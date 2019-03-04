@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../jquery-3.3.1.min.js"></script>
+<script>
+    function getmymessages() {
+        param = {"username":"ddj","password":"123456"};
+        $.ajax({
+            async : false,
+            cache:false,
+            type: 'POST',
+            data: param,
+            dataType : "json",
+            url: "http://localhost:8086/login/verification",//请求的action路径
+            error: function () {//请求失败处理函数
+                alert('失败！');
+            },
+            success:function(data){ //请求成功后处理函数。
+                alert("success")
+            }
+        });
+    }
+
+
+</script>
+<body>
+    进来了
+<input type="button" value="发送" onclick="getmymessages()">
+
+</body>
+</html>

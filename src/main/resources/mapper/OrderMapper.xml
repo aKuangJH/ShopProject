@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.shop.dao.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.cn.shop.entity.Order" >
+    <id column="oid" property="oid" jdbcType="INTEGER" />
+    <result column="aid" property="aid" jdbcType="INTEGER" />
+    <result column="gid" property="gid" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="goodsname" property="goodsname" jdbcType="VARCHAR" />
+    <result column="goodscount" property="goodscount" jdbcType="INTEGER" />
+    <result column="goodsstyle" property="goodsstyle" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    oid, aid, gid, uid, goodsname, goodscount, goodsstyle
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order
+    where oid = #{oid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order
+    where oid = #{oid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cn.shop.entity.Order" >
+    insert into order (oid, aid, gid, 
+      uid, goodsname, goodscount, 
+      goodsstyle)
+    values (#{oid,jdbcType=INTEGER}, #{aid,jdbcType=INTEGER}, #{gid,jdbcType=INTEGER}, 
+      #{uid,jdbcType=INTEGER}, #{goodsname,jdbcType=VARCHAR}, #{goodscount,jdbcType=INTEGER}, 
+      #{goodsstyle,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.shop.entity.Order" >
+    insert into order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="oid != null" >
+        oid,
+      </if>
+      <if test="aid != null" >
+        aid,
+      </if>
+      <if test="gid != null" >
+        gid,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="goodsname != null" >
+        goodsname,
+      </if>
+      <if test="goodscount != null" >
+        goodscount,
+      </if>
+      <if test="goodsstyle != null" >
+        goodsstyle,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="oid != null" >
+        #{oid,jdbcType=INTEGER},
+      </if>
+      <if test="aid != null" >
+        #{aid,jdbcType=INTEGER},
+      </if>
+      <if test="gid != null" >
+        #{gid,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="goodsname != null" >
+        #{goodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="goodscount != null" >
+        #{goodscount,jdbcType=INTEGER},
+      </if>
+      <if test="goodsstyle != null" >
+        #{goodsstyle,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.shop.entity.Order" >
+    update order
+    <set >
+      <if test="aid != null" >
+        aid = #{aid,jdbcType=INTEGER},
+      </if>
+      <if test="gid != null" >
+        gid = #{gid,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="goodsname != null" >
+        goodsname = #{goodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="goodscount != null" >
+        goodscount = #{goodscount,jdbcType=INTEGER},
+      </if>
+      <if test="goodsstyle != null" >
+        goodsstyle = #{goodsstyle,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where oid = #{oid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.shop.entity.Order" >
+    update order
+    set aid = #{aid,jdbcType=INTEGER},
+      gid = #{gid,jdbcType=INTEGER},
+      uid = #{uid,jdbcType=INTEGER},
+      goodsname = #{goodsname,jdbcType=VARCHAR},
+      goodscount = #{goodscount,jdbcType=INTEGER},
+      goodsstyle = #{goodsstyle,jdbcType=VARCHAR}
+    where oid = #{oid,jdbcType=INTEGER}
+  </update>
+</mapper>
